@@ -2,6 +2,7 @@ package com.kmits.banking.service.impl;
 
 import com.kmits.banking.dto.AccountDto;
 import com.kmits.banking.entity.Account;
+import com.kmits.banking.excpetion.AccountException;
 import com.kmits.banking.mapper.AccountMapper;
 import com.kmits.banking.repository.AccountRepository;
 import com.kmits.banking.service.AccountService;
@@ -31,7 +32,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountDto getAccountById(Long id) {
         Account account = accountRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Account does not exist."));
+                .orElseThrow(() -> new AccountException("Account does not exist."));
 
         return AccountMapper.mapToAccountDto(account);
 
@@ -41,7 +42,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountDto deposit(Long id, double amount) {
         Account account = accountRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Account does not exist."));
+                .orElseThrow(() -> new AccountException("Account does not exist."));
 
         double total = account.getBalance() + amount;
         account.setBalance(total);
@@ -53,7 +54,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountDto withdraw(Long id, double amount) {
         Account account = accountRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Account does not exist."));
+                .orElseThrow(() -> new AccountException("Account does not exist."));
         if (account.getBalance() < amount){
             throw new RuntimeException("Insufficient amount");
         }
@@ -76,7 +77,7 @@ public class AccountServiceImpl implements AccountService {
 
         Account account = accountRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Account does not exist."));
+                .orElseThrow(() -> new AccountException("Account does not exist."));
 
         accountRepository.deleteById(id);
     }
