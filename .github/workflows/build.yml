@@ -26,9 +26,9 @@ jobs:
       run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
 
     - name: Build docker image
-      run: docker build -t idrisseaa/springboot-banking-app .
+      run: docker build -t idrisseaa/banking-app .
     - name: Publish image to dockerhub
-      run: docker push idrisseaa/springboot-banking-app:latest
+      run: docker push idrisseaa/banking-app:latest
 
   deploy:
     needs: build
@@ -38,10 +38,10 @@ jobs:
         uses: byloth/docker-setup-action@v1
 
       - name: Pull Image from docker hub
-        run: docker pull idrisseaa/springboot-banking-app:latest
+        run: docker pull idrisseaa/banking-app
 
       - name: Delete old container
-        run: docker rm -f idrisseaa/springboot-banking-app-container
+        run: docker rm -f idrisseaa/banking-app-container
 
       - name: Run docker container
-        run: docker run -d -p 8080:8080 --name springboot-banking-app-container idrisseaa/springboot-banking-app
+        run: docker run -d -p 8080:8080 --name banking-app-container idrisseaa/banking-app
