@@ -35,12 +35,12 @@ jobs:
     runs-on: [aws-ec2]
     steps:    
       - name: Pull Image from docker hub
-        run: docker pull idrisseaa/banking-app:latest
+        run: docker pull idrisseaa/banking-app
 
       - name: Delete old container
         run: docker rm -f banking-app-container
 
       - name: Run docker container
-        run: docker run -d -p 8080:8080 --name banking-app-container idrisseaa/banking-app:latest
+        run: docker run -d -p 8080:8080 --name banking-app-container idrisseaa/banking-app
 
 
