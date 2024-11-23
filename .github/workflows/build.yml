@@ -25,12 +25,15 @@ jobs:
     - name: Build docker image
       run: docker build -t idrisseaa/banking-app .
     - name: Publish image to dockerhub
-      run: docker push idrisseaa/banking-app:latest"""
+      run: docker push idrisseaa/banking-app:latest
 
   deploy:
     #needs: build
     runs-on: [aws-ec2]
     steps:
+      - name: Add user to Docker group
+        run: sudo usermod -aG docker $USE
+
       - name: Pull Image from docker hub
         run: docker pull idrisseaa/banking-app:latest
 
