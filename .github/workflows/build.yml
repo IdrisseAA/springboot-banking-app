@@ -28,7 +28,7 @@ jobs:
     - name: Build docker image
       run: docker build -t idrisseaa/springboot-banking-app .
     - name: Publish image to dockerhub
-      run: docker push idrisseaa/springboot-banking-app:latest
+      run: docker push idrisseaa/springboot-banking-app
 
   deploy:
     needs: build
