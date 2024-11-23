@@ -33,17 +33,7 @@ jobs:
   deploy:
     needs: build
     runs-on: [aws-ec2]
-    steps:
-      - name: Docker environment setup
-        uses: byloth/docker-setup-action@v1
-        with:
-          registry: registry.domain.io
-          repository: idrisseaa/banking-app
-          shaLength: '8'
-          
-      - name: Login to docker hub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-      
+    steps:     
       - name: Pull Image from docker hub
         run: docker pull idrisseaa/banking-app
 
