@@ -57,4 +57,9 @@ public class AccountController {
         AccountDto accountDto = accountService.getAccountById(id);
         return ResponseEntity.ok(accountDto);
     }
+
+    @GetMapping("/welcome")
+    public String welcome(){
+        return "welcome";
+    }
 }
