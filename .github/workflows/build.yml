@@ -28,7 +28,7 @@ jobs:
     - name: Build docker image
       run: docker build -t idrisseaa/springboot-banking-app .
     - name: Publish image to dockerhub
-      run: docker push docker pull idrisseaa/springboot-banking-app:latest
+      run: docker push idrisseaa/springboot-banking-app:latest
 
   deploy:
     needs: build
@@ -38,7 +38,7 @@ jobs:
         uses: byloth/docker-setup-action@v1
 
       - name: Pull Image from docker hub
-        run: docker pull docker pull idrisseaa/springboot-banking-app:latest
+        run: docker pull idrisseaa/springboot-banking-app:latest
 
       - name: Delete old container
         run: docker rm -f idrisseaa/springboot-banking-app-container
