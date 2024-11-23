@@ -34,14 +34,11 @@ jobs:
     needs: build
     runs-on: [aws-ec2]
     steps:
-      - name: Setup Docker environment
-        uses: byloth/docker-setup-action@v1
-
       - name: Pull Image from docker hub
-        run: docker pull idrisseaa/banking-app
+        run: docker pull idrisseaa/banking-app:latest
 
       - name: Delete old container
-        run: docker rm -f idrisseaa/banking-app-container
+        run: docker rm -f banking-app-container
 
       - name: Run docker container
         run: docker run -d -p 8080:8080 --name banking-app-container idrisseaa/banking-app
