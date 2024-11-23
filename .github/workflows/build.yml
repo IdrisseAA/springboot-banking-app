@@ -35,7 +35,7 @@ jobs:
     runs-on: [aws-ec2]
     steps:
       - name: Pull Image from docker hub
-        run: docker pull idrisseaa/springboot-banking-app:latest
+        run: docker pull idrisseaa/springboot-banking-app
       - name: Delete old container
         run: docker rm -f idrisseaa/springboot-banking-app-container
       - name: Run docker container
