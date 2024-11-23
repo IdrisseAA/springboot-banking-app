@@ -40,7 +40,10 @@ jobs:
           sudo apt-get install -y docker.io
           sudo systemctl start docker
           sudo systemctl enable docker
-        
+          
+      - name: Login to docker hub
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+      
       - name: Pull Image from docker hub
         run: docker pull idrisseaa/banking-app
 
