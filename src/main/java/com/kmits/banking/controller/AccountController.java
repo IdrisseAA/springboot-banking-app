@@ -59,7 +59,7 @@ public class AccountController {
     }
 
     @GetMapping("/welcome")
-    public String welcome(){
+    public String welcome_function(){
         return "welcome";
     }
 }
